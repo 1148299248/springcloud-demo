@@ -1,0 +1,19 @@
+spring:
+  application:
+    name: config-server
+  cloud:
+    config:
+      server:
+        git:
+          uri:  https://gitee.com/likezhen/config-cloud.git
+          username: 1148299248@qq.com
+          password: likezhen521
+          timeout: 5
+          default-label: master
+          search-paths: config-cloud
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8700/eureka/
+server:
+  port: 8800

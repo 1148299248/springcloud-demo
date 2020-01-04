@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xdclass.provide.mapper.IdcardMapper">
+  <resultMap id="BaseResultMap" type="com.xdclass.provide.pojo.Idcard">
+    <id column="stid" jdbcType="VARCHAR" property="stid" />
+    <result column="carddate" jdbcType="DATE" property="carddate" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    stid, carddate
+  </sql>
+  <select id="selectByExample" parameterType="com.xdclass.provide.pojo.IdcardExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from idcard
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from idcard
+    where stid = #{stid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from idcard
+    where stid = #{stid,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.xdclass.provide.pojo.IdcardExample">
+    delete from idcard
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.xdclass.provide.pojo.Idcard">
+    insert into idcard (stid, carddate)
+    values (#{stid,jdbcType=VARCHAR}, #{carddate,jdbcType=DATE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xdclass.provide.pojo.Idcard">
+    insert into idcard
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="stid != null">
+        stid,
+      </if>
+      <if test="carddate != null">
+        carddate,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="stid != null">
+        #{stid,jdbcType=VARCHAR},
+      </if>
+      <if test="carddate != null">
+        #{carddate,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.xdclass.provide.pojo.IdcardExample" resultType="java.lang.Long">
+    select count(*) from idcard
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update idcard
+    <set>
+      <if test="record.stid != null">
+        stid = #{record.stid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.carddate != null">
+        carddate = #{record.carddate,jdbcType=DATE},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update idcard
+    set stid = #{record.stid,jdbcType=VARCHAR},
+      carddate = #{record.carddate,jdbcType=DATE}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xdclass.provide.pojo.Idcard">
+    update idcard
+    <set>
+      <if test="carddate != null">
+        carddate = #{carddate,jdbcType=DATE},
+      </if>
+    </set>
+    where stid = #{stid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xdclass.provide.pojo.Idcard">
+    update idcard
+    set carddate = #{carddate,jdbcType=DATE}
+    where stid = #{stid,jdbcType=VARCHAR}
+  </update>
+</mapper>

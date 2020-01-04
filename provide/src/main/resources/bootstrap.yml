@@ -1,0 +1,11 @@
+spring:
+  cloud:
+    config:
+      name: demo-service-mybatis2
+      profile: mybatis2
+      label: master
+      uri: http://localhost:8800/
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8700/eureka/

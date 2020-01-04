@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: demo2
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8700/eureka/
+server:
+  port: 8063
+feign:
+  hystrix:
+    enabled: true
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"

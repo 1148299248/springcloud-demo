@@ -1,0 +1,16 @@
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8700/eureka/
+spring:
+  application:
+    name: zull
+server:
+  port: 8000
+zuul:
+  routes:
+    demo10: /api/**
+    demo2: /apigateway/**
+  ignored-patterns: /demo*/**
+  #解决zuul会自动过滤cooker的问题
+  sensitive-headers:

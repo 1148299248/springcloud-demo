@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+    <!-- 配置mysql 驱动jar包路径.用了绝对路径 -->
+    <classPathEntry
+            location="E://mvn_repository/reps/mysql/mysql-connector-java/5.1.47/mysql-connector-java-5.1.47.jar" />
+
+    <context id="scm_mysql_tables" targetRuntime="MyBatis3">
+        <!-- 防止生成的代码中有很多注释，加入下面的配置控制 -->
+        <commentGenerator>
+            <property name="suppressAllComments" value="true" />
+            <property name="suppressDate" value="true" />
+        </commentGenerator>
+        <!-- 数据库连接 -->
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://localhost:3307/school?characterEncoding=UTF-8"
+                        userId="root"
+                        password="123456">
+        </jdbcConnection>
+
+        <javaTypeResolver >
+            <property name="forceBigDecimals" value="false" />
+        </javaTypeResolver>
+
+        <!-- 配置 pojo 实体类文件所在项目及包路径 -->
+        <javaModelGenerator targetPackage="com.xdclass.provide.pojo"
+                            targetProject="src/main/java">
+            <property name="enableSubPackages" value="true" />
+            <property name="trimStrings" value="true" />
+        </javaModelGenerator>
+        <!-- 配置Mapper接口所在的项目及包路径 -->
+        <sqlMapGenerator targetPackage="com.xdclass.provide.mapper"
+                         targetProject="src/main/java">
+            <property name="enableSubPackages" value="true" />
+        </sqlMapGenerator>
+        <!-- 配置常规功能单元（工具类）所在的项目及包路径，包括xml文件等插件 -->
+        <javaClientGenerator type="XMLMAPPER"
+                             targetPackage="com.xdclass.provide.mapper"
+                             targetProject="src/main/java">
+            <property name="enableSubPackages" value="true" />
+        </javaClientGenerator>
+        <!-- 数据表进行生成操作 schema:相当于库名; tableName:表名;
+            domainObjectName:对应的DO
+        -->
+        <table tableName="%"  >
+        </table>
+    </context>
+</generatorConfiguration>
