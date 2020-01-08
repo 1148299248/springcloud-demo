@@ -9,7 +9,7 @@ import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
 public class ZullApplication {
 
     public static void main(String[] args) {
-		System.out.println("123");
+		System.out.println("12223");
         SpringApplication.run(ZullApplication.class, args);
     }
 
